@@ -1,0 +1,13 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+h = 800
+v = input("Enter initial velocity: ")
+v_initial = float(v)
+g = 9.81
+
+t = (v_initial + (v_initial**2 - (2*g*h)**(0.5)))/9.81
+t1 = (v_initial - (v_initial**2 - (2*g*h)**(0.5)))/9.81
+
+print t 
+print t1
