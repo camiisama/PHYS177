@@ -6,11 +6,9 @@ v = input("Enter initial velocity: ")
 v_initial = float(v)
 g = 9.81
 
-t = (v_initial + (v_initial**2 - (2*g*h)**(0.5)))/9.81
-t1 = (v_initial - (v_initial**2 - (2*g*h)**(0.5)))/9.81
+t = np.sqrt(2*(h/g))
 
 print t 
-print t1
 
 vmin = input("Enter minimum velocity: ")
 vmin = float(vmin)
