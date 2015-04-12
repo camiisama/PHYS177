@@ -40,5 +40,6 @@ plt.xlim(4,11)
 plt.ylim(0,1.2)
 plt.xlabel('Final Scores')
 plt.ylabel('Number of Students')
-
 plt.show()
+
+savefig('FinalScores.pdf')
