@@ -28,3 +28,5 @@ plt.plot([t2,t3])
 plt.xlabel('time')
 plt.ylabel('initial velocity')
 plt.show()
+
+savefig('velocity.pdf')
