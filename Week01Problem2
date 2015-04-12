@@ -23,3 +23,8 @@ t3 = (vel_array - (vel_array**2 - (2*g*h)**(0.5)))/9.81
 
 print t2
 print t3
+
+plt.plot([t2,t3])
+plt.xlabel('time')
+plt.ylabel('initial velocity')
+plt.show()
