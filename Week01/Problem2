@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+h = 800
+v = input("Enter initial velocity: ")
+v_initial = float(v)
+g = 9.81
+
+t = np.sqrt(2*(h/g))
+
+print t 
+
+vmin = input("Enter minimum velocity: ")
+vmin = float(vmin)
+vmax = input("Enter maximum velocity: ")
+vmax = float(vmax)
+
+dv = (vmax-vmin)/10
+vel_array = vmin + np.arange(10) * dv + dv/2.
+
+t2 = (vel_array + (vel_array**2 - (2*g*h)**(0.5)))/9.81
+t3 = (vel_array - (vel_array**2 - (2*g*h)**(0.5)))/9.81
+
+print t2
+print t3
+
+plt.plot([t2,t3])
+plt.xlabel('time')
+plt.ylabel('initial velocity')
+plt.show()
+
+plt.savefig('velocity.png')
