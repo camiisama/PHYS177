@@ -8,5 +8,7 @@ a = -1.
 b = 1.
 N = 10
 
+
+#outputs the two values for the Trapezoidal Rule and Simpson's Rule 
 print trapint(f,a,b,N)
 print simpint(f,a,b,N)
