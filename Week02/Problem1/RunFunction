@@ -1,0 +1,12 @@
+from IntFunction import trapint
+from IntFunction import simpint
+
+def f(x):
+    return 2*x**3 - 6*x + 3.
+
+a = -1.
+b = 1.
+N = 10
+
+print trapint(f,a,b,N)
+print simpint(f,a,b,N)
