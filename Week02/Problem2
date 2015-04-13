@@ -1,1 +1,15 @@
+import numpy as np 
+from scipy import integrate 
+import matplotlib.pyplot as plt
 
+x,y = np.loadtxt('/Users/Camii/Documents/PHYS177/velocities.txt', unpack=True) 
+
+I1 = integrate.trapz(y,x)
+I2 = integrate.simps(y,x)
+print I1
+print I2
+
+plt.plot(x,y)
+plt.xlabel('Time')
+plt.ylabel('Velocity')
+plt.show()
