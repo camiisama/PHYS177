@@ -1,4 +1,5 @@
 def trapint(f,a,b,N):
+
     #Trapezoidal Rule function starts here 
     h = (b - a) / float(N)
     I = f(a) + f(b)
