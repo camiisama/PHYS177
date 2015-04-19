@@ -1,0 +1,43 @@
+import numpy as np
+from scipy.integrate import simps, trapz
+from IntFunction import trapint, simpint
+
+#Defines the integral given to us in the problem.
+def f(x):
+    return x**4 - 2*x + 1.
+
+#Variables for my own created functions over 20 bins
+a = 0
+b = 2
+N = 20
+
+#Variables for the scipy integration functions 
+x = np.array([0,1,2])
+y1 = f(x)
+
+#Assigns integration to variables
+trapez = trapint(f,a,b,N)
+simpson = simpint(f,a,b,N)
+I1 = simps(y1, x)
+I2 = trapz(y1, x)
+
+#Prints the rules using my own created functions.
+print 'My function trapezoidal rule: ',trapez
+print 'My function simpson rule: ', simpson
+
+#Prints the scipy functions 
+print 'Scipy trapezoidal rule: ',I2
+print 'Scipy simpson rule: ', I1
+
+#Computes the error on the simpson and trapezoidal rules.
+h = I2 - trapez
+j = I1 - simpson
+errortrap = 0.333 * h
+errorsimp = 0.067 * j
+
+#Prints the errors on both the Trapezoidal and Simpson rules. 
+print 'Error on Trapezoidal: ',errortrap
+print 'Error on Simpson: ', errorsimp
+
+#Compares to the actual integral that is computed by hand.
+print ('Actual result: 4.4')
