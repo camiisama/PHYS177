@@ -1,0 +1,27 @@
+import numpy as np
+from IntFunction import trapint
+
+#Defines the function
+def f(x):
+    return np.sin(np.sqrt(100 * x))**2
+
+#Sets variables for the function
+a = 0.
+b = 1.
+N = 10
+
+#variables for the loop to calculate the number of bins 
+actual = 0.455832
+err = 1.
+integratepls = 0.
+
+#Calculates the number of bins up until the 10e-6 error
+while err > 0.000001:
+    integratepls = trapint(f,a,b,N)
+    N = N * 2
+    err = np.abs((actual - integratepls)/3)
+
+#prints the results for the integration and bins
+print 'Actual result: 0.455832'
+print 'My integration: ',integratepls
+print 'Number of bins: ', N
