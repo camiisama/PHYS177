@@ -1,1 +1,38 @@
-mwuahahhahaha
+import numpy as np
+import matplotlib.pyplot as plt
+import math 
+
+#Define variables 
+epsilon = 8.854187817
+pi = 3.14159
+x1 = -45.
+x2 = -55.
+x = 0.
+phi_totes = 0.
+
+#Defines the phi function
+def phi(q,r):
+    q = float(q)
+    r = float(r)
+    if r == 0:
+        return 0
+    return q/(4 * pi * epsilon * r)
+
+#takes all the x values across
+while x1 < 56:
+    y = -50
+    
+#Calculates the y values up and down as the particles change distance
+    while y < 51:
+        r1 = math.sqrt(x1**2 + y**2)
+        r2 = math.sqrt(x2**2 + y**2)
+        phi_totes = phi(1,r1) + phi(-1,r2)
+        #prints out the electric potential
+        print 'Electric Potential: ',phi_totes 
+        #at the point on the grid
+        print 'at the point: ',y 
+        y = y + 1
+    
+    x1 += 1
+    x2 += 1
+
