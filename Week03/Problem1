@@ -33,6 +33,8 @@ for j in range(0,101):          #rows
 		print y
 
 #density plot that shows the electric potential of the charges
+plt.subplot(2,1,1)
 plt.imshow(phi_totes,origin='lower',extent=([0,100,0,100]))
 plt.gray()
 plt.show()
+
