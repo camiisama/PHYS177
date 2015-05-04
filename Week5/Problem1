@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#defines the polynominal function
+def polynom(x):
+    return 924*x**6 - 2772*x**5 + 3150*x**4 - 1680*x**3 + 420*x**2 - 42*x + 1
+
+#makes the plot values of x,y and inputs each element of function into y
+x = np.arange(0,1,0.01)
+y = np.zeros(len(x))
+y[:] = polynom(x[:])
+
+#plots the function
+plt.plot(x,y)
+plt.show()
+plt.savefig('Polynominal.png')
+
+#defines an array of guesses for the x values
+zarray = np.array([0.0335209,0.170696,0.379528,0.61848,0.831328,0.963856])
+
+#calculates the six errors using the values of the array
+for i in range(len(zarray)):
+    h = .01
+    error = 1.
+    z = zarray[i]
+    #does the Newton's Method
+    while (error > 0.000000001):
+        pd = (polynom(z + h) - polynom(z - h))/(2*h)
+        p = polynom(z)
+        z -= (p/pd)
+        error = abs(p/pd)
+    print 'Error:',error
