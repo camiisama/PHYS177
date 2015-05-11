@@ -1,0 +1,51 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal 
+
+#defines a function for the coefficients
+def dft(y):
+    N = len(y)
+    c = np.zeros(N//2+1,complex)
+    for k in range(N//2+1):
+        for n in range(N):
+            c[k] += y[n]*np.exp(-2j*np.pi*k*n/N)
+    return c
+    
+#defines the values for the x
+x = np.linspace(0, 1, 1000, endpoint=False)
+
+#defines an array for the square, sawtooth, and modulated sine wave
+sqarray = np.zeros(1000)
+sawarray = np.zeros(1000)
+msinarray = np.zeros(1000)
+
+#creates an array for the two waves
+for k in range(len(x)):
+    sqarray[k] = signal.square(2 * np.pi * x[k])
+    sawarray[k] = signal.sawtooth(2 * np.pi * x[k])
+    msinarray[k] = np.sin(np.pi*x[k]/1000) * np.sin(20*np.pi*x[k]/1000) 
+    
+#puts arrays into functions to calculates the coeffficients
+sawtooth = dft(sawarray)
+square = dft(sqarray)
+msin = dft(msinarray)
+
+#prints out the coefficients
+print square
+print sawtooth
+print msin
+
+#defines a variable for the coefficient arrays
+sqcoeff = dft(sqarray)
+sawcoeff = dft(sawarray)
+msincoeff = dft(msinarray)
+
+#plots the values of the coefficients 
+plt.subplot(3,1,1)
+plt.plot(abs(sqcoeff))
+plt.subplot(3,1,2)
+plt.plot(abs(sawcoeff))
+plt.subplot(3,1,3)
+plt.plot(abs(msincoeff))
+plt.xlim(0,1000)
+plt.show()
