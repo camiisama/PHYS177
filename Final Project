@@ -36,11 +36,8 @@ Dp = np.zeros([101,101])
 Dp[0] = 0.
 Dp[N] = L
 Dt = np.zeros([101,101])
-Dt[0] = Dbound
-Dt[N] = Dbound
 Dpt = np.zeros([101,101])
-Dpt[0] = Dbound
-Dpt[N] = Dbound
+
 
 #initial time
 t = 0.0
