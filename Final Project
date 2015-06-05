@@ -15,7 +15,7 @@ epsilon = h/1000
 
 #initial starting velocity of the string
 def velocity(x):
-    return C * ((x*(L-x))/x**2) * np.exp(-(x - d)**2/(2 * sigma**2)) 
+    return C * ((x*(L-x))/L**2) * np.exp(-(x - d)**2/(2 * sigma**2)) 
 
 #boundaries of the equation    
 Dbound = 0.0    
@@ -29,15 +29,11 @@ t5 = 3.5
 tfinal = t5 + epsilon
 
 #makes empty arrays
-D = np.zeros([101,101])
-D[0] = Dbound
-D[N] = Dbound
-Dp = np.zeros([101,101])
-Dp[0] = 0.
-Dp[N] = L
-Dt = np.zeros([101,101])
-Dpt = np.zeros([101,101])
-
+D = np.zeros([101])
+x = np.linspace(0,L,N+1)
+Dp = velocity(x)
+Dt = np.zeros([101])
+Dpt = np.zeros([101])
 
 #initial time
 t = 0.0
@@ -65,6 +61,6 @@ while (t < tfinal):
         plt.plot(D,color = 'purple')
 
 #plots the function
-plt.xlabel("Time")
-plt.ylabel("Distance")
+plt.xlabel("Distance")
+plt.ylabel("Amplitude")
 plt.show()
