@@ -1,58 +1,71 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 #Given initial constants
-L = 0.01
-v = 1.23e-6   
-N = 100       
-a = L/N       
-h = 1e-2     
+L = 100.    #in centimeters
+d = 10.     #in centimeters
+N = 100     #number of bins     
+a = L/N     #spacing
+C = 1.      #velocity constant
+v = 100     #in miliseconds
+sigma = 0.3       
+h = 1e-5    #spacing apart 
 epsilon = h/1000
 
-#boundaries of the equation
-Dlo = 0.0     
-Dmid = 0.5   
-Dhi = 1.0    
+#initial starting velocity of the string
+def velocity(x):
+    return C * ((x*(L-x))/x**2) * np.exp(-(x - d)**2/(2 * sigma**2)) 
+
+#boundaries of the equation    
+Dbound = 0.0    
 
 #times at which to take values
-t1 = 0.01
-t2 = 0.1
-t3 = 0.5
-t4 = 0.75
-t5 = 1.0
+t1 = 0.25
+t2 = 0.5
+t3 = 0.75
+t4 = 1.
+t5 = 3.5
 tfinal = t5 + epsilon
 
 #makes empty arrays
 D = np.zeros([101,101])
-D[0] = Dhi
-D[N] = Dlo
-D[1:N] = Dmid
+D[0] = Dbound
+D[N] = Dbound
 Dp = np.zeros([101,101])
-Dp[0] = Dhi
-Dp[N] = Dlo
+Dp[0] = 0.
+Dp[N] = L
+Dt = np.zeros([101,101])
+Dt[0] = Dbound
+Dt[N] = Dbound
+Dpt = np.zeros([101,101])
+Dpt[0] = Dbound
+Dpt[N] = Dbound
 
+#initial time
 t = 0.0
-c = h*v/(a*a)
 
 #loop that creates new values to plug into array
 while (t < tfinal):
 
     #Calculate values
-    Dp[1:N] = D[1:N] + c * (D[0:N-1] + D[2:N+1] - 2.*D[1:N])
-    D,Dp = Dp,D
+    Dpt[1:N] = Dp[1:N] + h * D[1:N]
+    Dt[1:N] = D[1:N] + h * (v**2/d**2) *(Dp[2:N+1] + Dp[0:N-1] - 2.*Dp[1:N])
+    D,Dt = Dt,D
+    Dp,Dpt = Dpt,Dp
     t += h
 
     #plots at each values
     if abs(t - t1) < epsilon:
-        plt.plot(D)
+        plt.plot(D,color = 'red')
     if abs(t - t2) < epsilon:
-        plt.plot(D)
+        plt.plot(D,color = 'blue')
     if abs(t - t3) < epsilon:
-        plt.plot(D)
+        plt.plot(D,color = 'green')
     if abs(t - t4) < epsilon:
-        plt.plot(D)
+        plt.plot(D,color = 'yellow')
     if abs(t - t5) < epsilon:
-        plt.plot(D)
+        plt.plot(D,color = 'purple')
 
 #plots the function
 plt.xlabel("Time")
