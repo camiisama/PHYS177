@@ -10,7 +10,7 @@ a = L/N     #spacing
 C = 1.      #velocity constant
 v = 100     #in miliseconds
 sigma = 0.3       
-h = 1e-5    #spacing apart 
+h = 1e-4    #spacing apart 
 epsilon = h/1000
 
 #initial starting velocity of the string
@@ -21,11 +21,11 @@ def velocity(x):
 Dbound = 0.0    
 
 #times at which to take values
-t1 = 0.25
-t2 = 0.5
-t3 = 0.75
-t4 = 1.
-t5 = 3.5
+t1 = 0.5
+t2 = 0.75
+t3 = 1
+t4 = 3.5
+t5 = 5.6
 tfinal = t5 + epsilon
 
 #makes empty arrays
@@ -52,11 +52,11 @@ while (t < tfinal):
     if abs(t - t1) < epsilon:
         plt.plot(D,color = 'red')
     if abs(t - t2) < epsilon:
-        plt.plot(D,color = 'blue')
+        plt.plot(D,color = 'orange')
     if abs(t - t3) < epsilon:
         plt.plot(D,color = 'green')
     if abs(t - t4) < epsilon:
-        plt.plot(D,color = 'yellow')
+        plt.plot(D,color = 'blue')
     if abs(t - t5) < epsilon:
         plt.plot(D,color = 'purple')
 
